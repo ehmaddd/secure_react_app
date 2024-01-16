@@ -5,7 +5,7 @@ import { signUp, logIn, logOut } from './authService';
 const AuthComponent: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [user, setUser] = useState<any>(null); // You can define a proper user type
+  const [user, setUser] = useState<any>(null);
 
   const handleSignUp = async () => {
     const success = await signUp(email, password);
