@@ -13,7 +13,7 @@ const ProductList: React.FC = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('/.netlify/functions/fetchProducts');
+        const response = await fetch('api/fetchProducts');
         const data = await response.json();
         setProducts(data);
       } catch (error) {
