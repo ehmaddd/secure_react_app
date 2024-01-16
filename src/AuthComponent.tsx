@@ -1,30 +1,33 @@
-// src/AuthComponent.tsx
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUp, logIn, logOut } from './authService';
+import { setUser, clearUser } from './redux/actions/authActions';
 
 const AuthComponent: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [user, setUser] = useState<any>(null);
+  const dispatch = useDispatch();
+  const user = useSelector((state: any) => state.auth.user);
+
+  const [email, setEmail] = useState<string>(''); // Add this line
+  const [password, setPassword] = useState<string>(''); // Add this line
 
   const handleSignUp = async () => {
     const success = await signUp(email, password);
     if (success) {
-      // Handle success, e.g., redirect to a different page
+      dispatch(setUser({ email }));
     }
   };
 
   const handleLogIn = async () => {
     const success = await logIn(email, password);
     if (success) {
-      // Handle success, e.g., redirect to a different page
+      dispatch(setUser({ email }));
     }
   };
 
   const handleLogOut = async () => {
     const success = await logOut();
     if (success) {
-      // Handle success, e.g., redirect to a different page
+      dispatch(clearUser());
     }
   };
 
