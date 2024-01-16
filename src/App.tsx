@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// src/App.tsx
+import React, { useState } from "react";
+import { signUp, logIn, logOut } from "./authService";
 
-function App() {
+const App: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignUp = async () => {
+    const result = await signUp(email, password);
+    console.log("Sign Up Result:", result);
+  };
+
+  const handleLogIn = async () => {
+    const result = await logIn(email, password);
+    console.log("Log In Result:", result);
+  };
+
+  const handleLogOut = async () => {
+    const result = await logOut();
+    console.log("Log Out Result:", result);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Firebase Authentication</h1>
+      <label>
+        Email:
+        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+      </label>
+      <label>
+        Password:
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </label>
+      <button onClick={handleSignUp}>Sign Up</button>
+      <button onClick={handleLogIn}>Log In</button>
+      <button onClick={handleLogOut}>Log Out</button>
     </div>
   );
-}
+};
 
 export default App;
