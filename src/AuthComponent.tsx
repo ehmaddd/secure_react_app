@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUp, logIn, logOut } from './authService';
 import { setUser, clearUser } from './redux/actions/authActions';
+import { useNavigate } from 'react-router-dom';
+
 
 const AuthComponent: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.auth.user);
 
@@ -21,6 +24,7 @@ const AuthComponent: React.FC = () => {
     const success = await logIn(email, password);
     if (success) {
       dispatch(setUser({ email }));
+      navigate('/dashboard');
     }
   };
 

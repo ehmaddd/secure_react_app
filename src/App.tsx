@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import AuthComponent from "./AuthComponent";
+import AppRouter from "./AppRouter";
 
 const App = () => {
   return (
-    <AuthComponent />
+    <React.StrictMode>
+      <AppRouter />
+    </React.StrictMode>
   )
 };
 
