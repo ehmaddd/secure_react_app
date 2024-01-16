@@ -12,10 +12,6 @@ module.exports = async (req, res) => {
     const response = await nodeFetch('https://dummyjson.com/products');
     const data = await response.json();
 
-    // Log the response and data
-    console.log('Response:', response);
-    console.log('Data:', data);
-
     // Send the data as JSON in the response
     res.status(200).json(data);
   } catch (error) {
