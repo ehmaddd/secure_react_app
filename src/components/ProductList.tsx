@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -50,9 +51,11 @@ const ProductList: React.FC = () => {
       <Slider {...settings}>
         {products.map((product) => (
           <div key={product.id} className="product-slide">
-            <img src={product.images[0]} alt={product.title} />
-            <p className="product-title">{product.title}</p>
-            <p className="product-price">${product.price}</p>
+            <Link to={`/products/${product.id}`}>
+              <img src={product.images[0]} alt={product.title} />
+              <p className="product-title">{product.title}</p>
+              <p className="product-price">${product.price}</p>
+            </Link>
           </div>
         ))}
       </Slider>
