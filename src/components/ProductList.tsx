@@ -6,7 +6,7 @@ interface Product {
   description: string;
   price: number;
   discountPercentage: number;
-  images: string[]; // Assuming it's an array of image URLs
+  images: string[];
 }
 
 interface ApiResponse {
@@ -22,7 +22,7 @@ const ProductList: React.FC = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('/api/fetchProducts');
+        const response = await fetch(`/api/fetchProducts`);
         const data: ApiResponse = await response.json();
         console.log('Server Response:', response);
         console.log('Product Data:', data);
@@ -38,15 +38,13 @@ const ProductList: React.FC = () => {
   return (
     <div>
       <h2>Product List</h2>
-      <ul>
         {products.map((product) => (
-          <li key={product.id}>
-            <img src={product.images[0]} alt={product.title} /> {/* Display the first image */}
+          <div key={product.id} style={{ width: '20%' }}>
+            <img src={product.images[0]} alt={product.title} />
             <p>{product.title}</p>
             <p>${product.price}</p>
-          </li>
+          </div>
         ))}
-      </ul>
     </div>
   );
 };
