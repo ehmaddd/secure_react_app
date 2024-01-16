@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import './ProductList.css';
 
 interface Product {
   id: number;
@@ -40,19 +41,18 @@ const ProductList: React.FC = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5, // Number of items to show at once
-    slidesToScroll: 1, // Number of items to scroll for each navigation
+    slidesToShow: 5,
+    slidesToScroll: 1,
   };
 
   return (
-    <div>
-      <h2>Product List</h2>
+    <div className="product-slider">
       <Slider {...settings}>
         {products.map((product) => (
-          <div key={product.id}>
+          <div key={product.id} className="product-slide">
             <img src={product.images[0]} alt={product.title} />
-            <p>{product.title}</p>
-            <p>${product.price}</p>
+            <p className="product-title">{product.title}</p>
+            <p className="product-price">${product.price}</p>
           </div>
         ))}
       </Slider>
